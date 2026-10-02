@@ -5,6 +5,8 @@ import { Invitation } from "./component/invitation"
 import { Gallery } from "./component/gallery"
 import { Information } from "./component/information"
 import { LazyDiv } from "./component/lazyDiv"
-
 function App() {
-  return (
+return (
+)
+}
+export default App
