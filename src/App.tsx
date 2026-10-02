@@ -14,7 +14,7 @@ import { LazyDiv } from "./component/lazyDiv"
  */
 function App() {
   return (
-{/* 배경 애니메이션 효과 (예: 꽃잎 내리기) */}
+    {/* 배경 애니메이션 효과 (예: 꽃잎 내리기) */}
 
 {/* 메인 커버 섹션 */}
 
@@ -26,4 +26,5 @@ function App() {
 
 )
 }
+
 export default App
