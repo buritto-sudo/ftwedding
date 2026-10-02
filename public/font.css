@@ -1,0 +1,42 @@
+/* 1. 선명한 프리텐다드 & 세련된 마루부리 웹폰트 로드 */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+
+@font-face {
+  font-family: 'MaruBuri';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/MaruBuri-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* 2. 전체 기본 서체: 우아하고 깔끔한 마루부리 적용 */
+*, body, html {
+  font-family: "MaruBuri", "Batang", "Noto Serif KR", serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.75;
+}
+
+/* 3. 날짜, 시간, 숫자: 눈에 확 들어오도록 또렷한 프리텐다드 볼드 적용 */
+.date, 
+.time, 
+.day, 
+.d-day, 
+.wedding-date, 
+.calendar-date,
+[class*="date"],
+[class*="time"],
+.countdown {
+  font-family: "Pretendard", -apple-system, sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em !important;
+  color: #1f2937 !important;
+}
+
+/* 4. 제목 및 이름 */
+h1, h2, .title, .names {
+  font-weight: 600 !important;
+  letter-spacing: 0.02em;
+}h1, h2, .title, .names {
+  font-weight: 600 !important;
+  letter-spacing: 0.02em;
+}
