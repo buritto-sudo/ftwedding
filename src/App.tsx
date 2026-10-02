@@ -7,6 +7,17 @@ import { Information } from "./component/information"
 import { GuestBook } from "./component/guestbook"
 import { LazyDiv } from "./component/lazyDiv"
 
-function App() {
-  return () }
-export default App
+export default function App() {
+  const c1 = 
+  const c2 = 
+  const c3 = 
+  const c4 = 
+
+  return (
+{c1}
+{c2}
+{c3}
+{c4}
+
+)
+}
