@@ -8,6 +8,5 @@ import { GuestBook } from "./component/guestbook"
 import { LazyDiv } from "./component/lazyDiv"
 
 function App() {
-  return ()
-}
+  return () }
 export default App
