@@ -34,13 +34,17 @@ jobs:
           VITE_SERVER_URL: ${{ vars.VITE_SERVER_URL }}
           VITE_STATIC_ONLY: ${{ vars.VITE_STATIC_ONLY }}
 
+      # ⭕ enablement: true를 넣어 자동으로 GitHub Pages를 활성화합니다.
       - name: Setup Pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
+      # ⭕ Vite 기본 빌드 폴더인 ./dist로 지정합니다. (vite 설정이 ./build라면 ./build 유지)
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./build"
+          path: "./dist"
 
       - name: Deploy to GitHub Pages
         id: deployment
