@@ -1,3 +1,4 @@
+import { createElement as h } from "react"
 import { Cover } from "./component/cover"
 import "./App.scss"
 import { BGEffect } from "./component/bgEffect"
@@ -8,16 +9,17 @@ import { GuestBook } from "./component/guestbook"
 import { LazyDiv } from "./component/lazyDiv"
 
 export default function App() {
-  const c1 = 
-  const c2 = 
-  const c3 = 
-  const c4 = 
-
-  return (
-{c1}
-{c2}
-{c3}
-{c4}
-
-)
+  return h(
+    "div",
+    { className: "background" },
+    h(BGEffect),
+    h(
+      "div",
+      { className: "card-view" },
+      h(LazyDiv, { className: "card-group" }, h(Cover), h(Invitation)),
+      h(LazyDiv, { className: "card-group" }, h(Gallery)),
+      h(LazyDiv, { className: "card-group" }, h(Information)),
+      h(LazyDiv, { className: "card-group" }, h(GuestBook))
+    )
+  )
 }
