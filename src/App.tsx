@@ -6,5 +6,5 @@ import { Gallery } from "./component/gallery"
 import { Information } from "./component/information"
 import { LazyDiv } from "./component/lazyDiv"
 
-export default function App() {
+function App() {
   return (
