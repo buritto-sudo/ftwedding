@@ -1,5 +1,6 @@
 import { createElement as h } from "react"
 import { Cover } from "./component/cover"
+import { Location } from "./component/location"
 import "./App.scss"
 import { BGEffect } from "./component/bgEffect"
 import { Invitation } from "./component/invitation"
@@ -17,6 +18,7 @@ export default function App() {
       { className: "card-view" },
       h(LazyDiv, { className: "card-group" }, h(Cover), h(Invitation)),
       h(LazyDiv, { className: "card-group" }, h(Gallery)),
+      h(LazyDiv, { className: "card-group" }, h(Location)),
       h(LazyDiv, { className: "card-group" }, h(Information))
     )
   )
