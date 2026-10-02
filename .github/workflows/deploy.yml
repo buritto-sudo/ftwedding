@@ -1,56 +1,56 @@
-name: Deploy
+import { defineConfig } from "vite"
+import react from "@vitejs/plugin-react"
+import svgr from "vite-plugin-svgr"
+import fs from "fs"
 
-on:
-  push:
-    branches: ["main"]
-  workflow_dispatch:
+import pkg from "./package.json"
+import { createHtmlPlugin } from "vite-plugin-html"
+import {
+  GROOM_FULLNAME,
+  BRIDE_FULLNAME,
+  WEDDING_DATE,
+  LOCATION,
+  WEDDING_DATE_FORMAT,
+} from "./src/const"
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+// GitHub Pages 워크플로우에 맞춘 출력 폴더 설정
+const distFolder = "build"
 
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
+let base = "/"
 
-jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+try {
+  const url = new URL(pkg.homepage)
+  base = url.pathname
+} catch (e) {
+  base = pkg.homepage || "/"
+}
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Use Node.js 22.x
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22.x
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build
-        run: npm run build
-        env:
-          VITE_NAVER_MAP_CLIENT_ID: ${{ secrets.VITE_NAVER_MAP_CLIENT_ID }}
-          VITE_KAKAO_SDK_JS_KEY: ${{ secrets.VITE_KAKAO_SDK_JS_KEY }}
-          VITE_SERVER_URL: ${{ vars.VITE_SERVER_URL }}
-          VITE_STATIC_ONLY: ${{ vars.VITE_STATIC_ONLY }}
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: "./dist"
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [
+    react(),
+    svgr(),
+    createHtmlPlugin({
+      inject: {
+        data: {
+          GROOM_FULLNAME,
+          BRIDE_FULLNAME,
+          DESCRIPTION: `\({WEDDING_DATE.format(WEDDING_DATE_FORMAT)}\){LOCATION}`,
+        },
+      },
+    }),
+    {
+      name: "manifest-inject",
+      writeBundle() {
+        const content = fs.readFileSync("public/manifest.json", "utf-8")
+        const processed = content
+          .replace(/<%= GROOM_FULLNAME %>/g, GROOM_FULLNAME)
+          .replace(/<%= BRIDE_FULLNAME %>/g, BRIDE_FULLNAME)
+        fs.writeFileSync(`${distFolder}/manifest.json`, processed)
+      },
+    },
+  ],
+  server: { port: 3000 },
+  build: { outDir: distFolder },
+  base,
+})
