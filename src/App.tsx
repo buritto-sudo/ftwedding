@@ -5,7 +5,6 @@ import { BGEffect } from "./component/bgEffect"
 import { Invitation } from "./component/invitation"
 import { Gallery } from "./component/gallery"
 import { Information } from "./component/information"
-import { GuestBook } from "./component/guestbook"
 import { LazyDiv } from "./component/lazyDiv"
 
 export default function App() {
@@ -18,8 +17,7 @@ export default function App() {
       { className: "card-view" },
       h(LazyDiv, { className: "card-group" }, h(Cover), h(Invitation)),
       h(LazyDiv, { className: "card-group" }, h(Gallery)),
-      h(LazyDiv, { className: "card-group" }, h(Information)),
-      h(LazyDiv, { className: "card-group" }, h(GuestBook))
+      h(LazyDiv, { className: "card-group" }, h(Information))
     )
   )
 }
