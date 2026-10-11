@@ -27,7 +27,7 @@ const DAY_OF_WEEK = [
 export const Cover = () => {
   return (
     <LazyDiv className="card cover">
-      {/* 상단 날짜 및 요일 강조 (세련된 세리프/숫자 레이아웃) */}
+      {/* 상단 날짜 및 요일 강조 */}
       <div
         className="wedding-date"
         style={{
@@ -78,42 +78,3 @@ export const Cover = () => {
         <div className="divider" style={{ display: "inline-block", margin: "0 10px" }} />
         {BRIDE_FULLNAME}
       </div>
-
-      {/* 하단 일시 및 장소: 시각적 계층 분리 */}
-      <div
-        style={{
-          borderTop: "1px solid #f3f4f6",
-          paddingTop: "18px",
-          marginTop: "8px",
-          display: "flex",
-          flexDirection: "column",
-          gap: "6px",
-          alignItems: "center",
-        }}
-      >
-        {/* 본식 일시 (크고 또렷하게 강조) */}
-        <div
-          style={{
-            fontSize: "16px",
-            fontWeight: 700,
-            color: "#111827",
-            letterSpacing: "-0.01em",
-          }}
-        >
-          {WEDDING_DATE.format(WEDDING_DATE_FORMAT)}
-        </div>
-
-        {/* 예식장 장소 (단정하고 차분한 톤) */}
-        <div
-          style={{
-            fontSize: "14px",
-            color: "#4b5563",
-            fontWeight: 500,
-          }}
-        >
-          {LOCATION}
-        </div>
-      </div>
-    </LazyDiv>
-  )
-}
