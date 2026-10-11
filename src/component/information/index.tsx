@@ -6,14 +6,11 @@ import { LazyDiv } from "../lazyDiv"
 import { Modal } from "../modal"
 import { AttendanceInfo } from "./attendance"
 
-/**
- * 식사 정보 안내 컴포넌트입니다.
- */
 export const Information1 = () => {
   return (
     <>
       <h2 className="english">Information</h2>
-      <div className="info-card" style={{ height: "auto", minHeight: "auto", overflow: "visible" }}>
+      <div className="info-card" style={{ height: "auto", overflow: "visible" }}>
         <div className="label" style={{ fontSize: "1.15rem", fontWeight: "bold", marginBottom: "6px" }}>
           식사 안내
         </div>
@@ -27,17 +24,13 @@ export const Information1 = () => {
   )
 }
 
-/**
- * 축의금 계좌번호 안내 컴포넌트입니다.
- * 신랑측, 신부측 계좌번호를 모달로 보여줍니다.
- */
 export const Information2 = () => {
   const donationModalState = useState(false)
   const [isGroom, setIsGroom] = useState(true)
 
   return (
     <>
-      <div className="info-card" style={{ height: "auto", minHeight: "auto", overflow: "visible" }}>
+      <div className="info-card" style={{ height: "auto", overflow: "visible" }}>
         <div className="label" style={{ fontSize: "1.15rem", fontWeight: "bold", marginBottom: "6px" }}>
           마음 전하기
         </div>
@@ -72,7 +65,6 @@ export const Information2 = () => {
         </Button>
       </div>
 
-      {/* 계좌 정보 모달 */}
       <Modal
         modalState={donationModalState}
         className="donation-modal"
@@ -83,4 +75,80 @@ export const Information2 = () => {
             {isGroom ? "신랑측 계좌번호" : "신부측 계좌번호"}
           </div>
         </div>
-        <div className
+        <div className="content" style={{ padding: "8px 12px" }}>
+          {(isGroom ? GROOM_INFO : BRIDE_INFO)
+            .filter(({ account }) => !!account)
+            .map(({ relation, name, account }) => (
+              <div
+                className="account-info"
+                key={relation}
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  padding: "12px 0",
+                  borderBottom: "1px solid #eee",
+                }}
+              >
+                <div style={{ textAlign: "left", flex: 1 }}>
+                  <div className="name" style={{ fontSize: "1.1rem", fontWeight: "bold", color: "#111", marginBottom: "4px" }}>
+                    <span className="relation" style={{ color: "#666", marginRight: "4px" }}>{relation}</span> {name}
+                  </div>
+                  <div style={{ fontSize: "1.12rem", fontWeight: "bold", color: "#222" }}>{account}</div>
+                </div>
+                <Button
+                  className="copy-button"
+                  style={{ fontSize: "0.95rem", fontWeight: "bold", padding: "8px 12px", marginLeft: "8px", whiteSpace: "nowrap" }}
+                  onClick={async () => {
+                    if (account) {
+                      try {
+                        await navigator.clipboard.writeText(account)
+                        alert(account + "\n복사되었습니다.")
+                      } catch {
+                        alert("복사에 실패했습니다.")
+                      }
+                    }
+                  }}
+                >
+                  복사하기
+                </Button>
+              </div>
+            ))}
+        </div>
+        <div className="footer" style={{ padding: "12px" }}>
+          <Button
+            buttonStyle="style2"
+            className="bg-light-grey-color text-dark-color"
+            style={{ fontSize: "1.05rem", padding: "8px 20px" }}
+            onClick={() => donationModalState[1](false)}
+          >
+            닫기
+          </Button>
+        </div>
+      </Modal>
+    </>
+  )
+}
+
+export const Information = () => {
+  if (STATIC_ONLY) {
+    return (
+      <>
+        <LazyDiv className="card information" style={{ height: "auto", overflow: "visible" }}>
+          <Information1 />
+        </LazyDiv>
+        <LazyDiv className="card information" style={{ height: "auto", overflow: "visible" }}>
+          <Information2 />
+        </LazyDiv>
+      </>
+    )
+  }
+
+  return (
+    <LazyDiv className="card information" style={{ height: "auto", overflow: "visible" }}>
+      <Information1 />
+      <Information2 />
+      <AttendanceInfo />
+    </LazyDiv>
+  )
+}
