@@ -37,15 +37,6 @@ export const Cover = () => {
         {BRIDE_FULLNAME}
       </div>
 
-      {/* 일시 및 장소 (글씨 확대) */}
-      <div style={{ borderTop: "1px solid #f3f4f6", paddingTop: "20px", marginTop: "8px", display: "flex", flexDirection: "column", gap: "8px", alignItems: "center" }}>
-        <div style={{ fontSize: "20px", fontWeight: 700, color: "#111827", letterSpacing: "-0.01em", lineHeight: "1.4" }}>
-          {WEDDING_DATE.format(WEDDING_DATE_FORMAT)}
-        </div>
-        <div style={{ fontSize: "17px", color: "#374151", fontWeight: 600, lineHeight: "1.4" }}>
-          {LOCATION}
-        </div>
-      </div>
-    </LazyDiv>
-  )
-}
+      {/* 일시 및 장소 (크리스탈볼룸 한 줄 고정) */}
+      <div style={{ borderTop: "1px solid #f3f4f6", paddingTop: "20px", marginTop: "8px", display: "flex", flexDirection: "column", gap: "8px", alignItems: "center", width: "100%" }}>
+        <div style={{ fontSize: "19px", fontWeight: 700, color: "#111827", letterSpacing: "-0.01
