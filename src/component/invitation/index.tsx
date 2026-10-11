@@ -10,26 +10,7 @@ import {
 } from "../../const"
 import { LazyDiv } from "../lazyDiv"
 
-/**
- * 초대 메시지와 혼주 정보를 제공하는 컴포넌트입니다.
- *
- * @returns {JSX.Element} 모시는 글 섹션
- */
 export const Invitation = () => {
-  const lineStyle = {
-    lineHeight: "2.5",
-    color: "#111",
-    fontSize: "1.45rem",
-    fontWeight: "bold" as const,
-  }
-
-  const relationStyle = {
-    margin: "0 6px",
-    fontSize: "1.15rem",
-    fontWeight: "normal" as const,
-    color: "#666",
-  }
-
   return (
     <>
       <LazyDiv className="card invitation">
@@ -37,7 +18,6 @@ export const Invitation = () => {
 
         <div className="break" />
 
-        {/* 초대 문구 */}
         <div className="content">우주를 한 사람으로 축소하고</div>
         <div className="content">그 한 사람을 신으로 확대하면</div>
         <div className="content">그것이 바로 사랑이기에</div>
@@ -52,23 +32,21 @@ export const Invitation = () => {
         <div className="break" />
 
         {/* 혼주 및 신랑 정보 */}
-        <div className="name" style={lineStyle}>
-          <span>
-            {GROOM_FATHER} · {GROOM_MOTHER}
-          </span>
-          <span className="relation" style={relationStyle}>
-            의
-          </span>
+        <div className="name" style={{ lineHeight: "2.5", color: "#111", fontSize: "1.45rem", fontWeight: "bold" }}>
+          <span>{GROOM_FATHER} · {GROOM_MOTHER}</span>
+          <span className="relation" style={{ margin: "0 6px", fontSize: "1.15rem", fontWeight: "normal", color: "#666" }}>의</span>
           <span className="relation-name">{GROOM_TITLE}</span>{" "}
           <span>{GROOM_FULLNAME}</span>
         </div>
 
         {/* 혼주 및 신부 정보 */}
-        <div className="name" style={lineStyle}>
-          <span>
-            {BRIDE_FATHER} · {BRIDE_MOTHER}
-          </span>
-          <span className="relation" style={relationStyle}>
-            의
-          </span>
-          <span
+        <div className="name" style={{ lineHeight: "2.5", color: "#111", fontSize: "1.45rem", fontWeight: "bold" }}>
+          <span>{BRIDE_FATHER} · {BRIDE_MOTHER}</span>
+          <span className="relation" style={{ margin: "0 6px", fontSize: "1.15rem", fontWeight: "normal", color: "#666" }}>의</span>
+          <span className="relation-name">{BRIDE_TITLE}</span>{" "}
+          <span>{BRIDE_FULLNAME}</span>
+        </div>
+      </LazyDiv>
+    </>
+  )
+}
