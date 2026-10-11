@@ -16,6 +16,20 @@ import { LazyDiv } from "../lazyDiv"
  * @returns {JSX.Element} 모시는 글 섹션
  */
 export const Invitation = () => {
+  const lineStyle = {
+    lineHeight: "2.5",
+    color: "#111",
+    fontSize: "1.45rem",
+    fontWeight: "bold" as const,
+  }
+
+  const relationStyle = {
+    margin: "0 6px",
+    fontSize: "1.15rem",
+    fontWeight: "normal" as const,
+    color: "#666",
+  }
+
   return (
     <>
       <LazyDiv className="card invitation">
@@ -35,6 +49,26 @@ export const Invitation = () => {
         <div className="content">따뜻한 축복으로 밝혀주시면</div>
         <div className="content">더없는 기쁨이 되겠습니다.</div>
 
+        <div className="break" />
+
+        {/* 혼주 및 신랑 정보 */}
+        <div className="name" style={lineStyle}>
+          <span>
+            {GROOM_FATHER} · {GROOM_MOTHER}
+          </span>
+          <span className="relation" style={relationStyle}>
+            의
+          </span>
+          <span className="relation-name">{GROOM_TITLE}</span>{" "}
+          <span>{GROOM_FULLNAME}</span>
+        </div>
+
+        {/* 혼주 및 신부 정보 */}
+        <div className="name" style={lineStyle}>
+          <span>
+            {BRIDE_FATHER} · {BRIDE_MOTHER}
+          </span>
+          <span className
         <div className="break" />
 
         {/* 혼주 및 신랑 정보 */}
